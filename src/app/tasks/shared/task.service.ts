@@ -18,7 +18,7 @@ const TASKS: Array<Task> = [
 export class TaskService{
 
   public getTasks(): Promise<Task[]>{
-    let promise = new Promise(function(resolve, reject){
+    let promise = new Promise<Task[]>(function(resolve, reject){
       if (TASKS.length > 0) {
         resolve(TASKS);
       } else {
