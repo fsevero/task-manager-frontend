@@ -22,6 +22,10 @@ const ROUTES = RouterModule.forRoot([
     component: TasksComponent
   },
   {
+    path: 'tasks/:id',
+    component: TaskDetailComponent
+  },
+  {
     path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full'
