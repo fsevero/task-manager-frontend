@@ -3,6 +3,8 @@ import { Injectable } from "@angular/core";
 
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
+import "rxjs/add/operator/catch";
+import "rxjs/add/observable/throw";
 
 import { Task } from "./task.model";
 
@@ -17,6 +19,7 @@ export class TaskService{
 
   public getTasks(): Observable<Task[]>{
     return this.http.get(this.tasksUrl)
+      .catch(this.handleErrors)
       .map((response: Response) => response.json() as Task[])
   }
 
@@ -31,6 +34,12 @@ export class TaskService{
     let url = `${this.tasksUrl}/${id}`;
 
     return this.http.get(url)
+      .catch(this.handleErrors)
       .map((response: Response) => response.json() as Task)
+  }
+
+  private handleErrors(error: Response) {
+    console.log('Erro para log => ', error);
+    return Observable.throw(error);
   }
 }
