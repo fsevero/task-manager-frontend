@@ -7,7 +7,7 @@ import { TaskService } from "../../tasks/shared/task.service";
 import { Subject } from "rxjs/Subject";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/switchMap";
-import "rxjs/add/Observable/of";
+import "rxjs/add/observable/of";
 
 @Component({
   selector: 'task-search',
