@@ -24,8 +24,10 @@
     "angular-in-memory-web-api": "^0.5.4",
     "bootstrap": "^4.0.0",
     "core-js": "^2.4.1",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47",
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
+    "moment": "^2.21.0",
     "npm": "^5.7.1",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
@@ -34,6 +36,7 @@
     "@angular/cli": "~1.7.2",
     "@angular/compiler-cli": "^5.2.0",
     "@angular/language-service": "^5.2.0",
+    "@types/eonasdan-bootstrap-datetimepicker": "^4.17.26",
     "@types/jasmine": "~2.8.3",
     "@types/jasminewd2": "~2.0.2",
     "@types/jquery": "^3.3.1",

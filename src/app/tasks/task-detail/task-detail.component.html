@@ -1,13 +1,13 @@
-<style>
+<!-- <style>
   form .has-error {
     background-color: #ffb2c9;
   }
-</style>
+</style> -->
 
-<h1>Detalhes da Tarefa: {{ task?.title }}</h1>
+<h1>Detalhes da Tarefa: {{ task.title }}</h1>
 
 <!-- Form -->
-<form #taskForm="ngForm" *ngIf="task">
+<form #taskForm="ngForm" class="was-validated">
 
   <!-- title, deadline, done -->
   <div class="row">
@@ -19,12 +19,12 @@
     <!-- deadline -->
     <div class="col-3">
       <label for="deadline">Prazo de Entrega</label>
-      <input type="text" class="form-control" id="deadline" placeholder="Y-m-d H:i" [(ngModel)]="task.deadline" name="deadline" id="deadline">
+      <input type="text" class="form-control" id="deadline" [(ngModel)]="task.deadline" name="deadline" id="deadline" required>
     </div>
     <!-- done -->
     <div class="col-3">
       <label for="done">Situação</label>
-      <select class="form-control" id="done" [(ngModel)]="task.done" name="done" id="done">
+      <select class="form-control" id="done" [(ngModel)]="task.done" name="done" id="done" required>
         <option *ngFor="let option of taskDoneOptions" [value]="option.value">{{ option.text }}</option>
       </select>
     </div>

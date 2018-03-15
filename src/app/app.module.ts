@@ -27,6 +27,7 @@ import "./rxjs-imports"
 
 // jquery plugins
 import * as $ from 'jquery';
+import * as datetimepicker from 'eonasdan-bootstrap-datetimepicker';
 
 @NgModule({
   declarations: [
