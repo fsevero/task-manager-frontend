@@ -1,3 +1,9 @@
+<style>
+  form .has-error {
+    background-color: #ffb2c9;
+  }
+</style>
+
 <h1>Detalhes da Tarefa: {{ task?.title }}</h1>
 
 <!-- Form -->
@@ -8,7 +14,7 @@
     <!-- title -->
     <div class="form-group col-6">
       <label for="title">Título</label>
-      <input type="text" class="form-control" id="title" placeholder="Título" [(ngModel)]="task.title" name="title" id="title" required>
+      <input #title="ngModel" type="text" class="form-control" id="title" placeholder="Título" [(ngModel)]="task.title" name="title" id="title" required [class.has-error]="title.invalid && title.touched">
     </div>
     <!-- deadline -->
     <div class="col-3">
@@ -34,8 +40,5 @@
 
   <!-- Buttons -->
   <button class="btn btn-light" (click)="goBack()" >Voltar</button>
-  <button type="submit" class="btn btn-success" (click)="updateTask()" >Atualizar</button>
-
-  <!-- debug -->
-  <pre>{{ task | json }}</pre>
+  <button type="submit" class="btn btn-success" (click)="updateTask()" [disabled]="taskForm.invalid" >Atualizar</button>
 </form>
