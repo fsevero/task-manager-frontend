@@ -46,11 +46,6 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
   }
 
   public updateTask() {
-    if ( !this.task.title ) {
-      alert('Tarefa deve possuir um título!');
-      return;
-    }
-
     this.taskService.update(this.task)
       .subscribe(
         () => alert('Tarefa atualizada com sucesso!'),

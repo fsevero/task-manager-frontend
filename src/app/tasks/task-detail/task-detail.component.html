@@ -7,7 +7,7 @@
 <h1>Detalhes da Tarefa: {{ task.title }}</h1>
 
 <!-- Form -->
-<form #taskForm="ngForm" class="was-validated">
+<form #taskForm="ngForm" (ngSubmit)="updateTask()" class="was-validated">
 
   <!-- title, deadline, done -->
   <div class="row">
@@ -39,6 +39,6 @@
   </div>
 
   <!-- Buttons -->
+  <button type="submit" class="btn btn-success" [disabled]="taskForm.invalid" >Atualizar</button>
   <button class="btn btn-light" (click)="goBack()" >Voltar</button>
-  <button type="submit" class="btn btn-success" (click)="updateTask()" [disabled]="taskForm.invalid" >Atualizar</button>
 </form>
