@@ -1,17 +1,41 @@
 <h1>Detalhes da Tarefa: {{ task?.title }}</h1>
 
 <!-- Form -->
-<div *ngIf="task">
-  <div class="form-group row">
-    <label for="title" class="col-sm-2 col-form-label">Título</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="title" placeholder="Título" [(ngModel)]="task.title">
+<form #taskForm="ngForm" *ngIf="task">
+
+  <!-- title, deadline, done -->
+  <div class="row">
+    <!-- title -->
+    <div class="form-group col-6">
+      <label for="title">Título</label>
+      <input type="text" class="form-control" id="title" placeholder="Título" [(ngModel)]="task.title" name="title" id="title" required>
+    </div>
+    <!-- deadline -->
+    <div class="col-3">
+      <label for="deadline">Prazo de Entrega</label>
+      <input type="text" class="form-control" id="deadline" placeholder="Y-m-d H:i" [(ngModel)]="task.deadline" name="deadline" id="deadline">
+    </div>
+    <!-- done -->
+    <div class="col-3">
+      <label for="done">Situação</label>
+      <select class="form-control" id="done" [(ngModel)]="task.done" name="done" id="done">
+        <option *ngFor="let option of taskDoneOptions" [value]="option.value">{{ option.text }}</option>
+      </select>
     </div>
   </div>
-  <div class="form-group row">
-    <div class="col-sm-10">
-      <button class="btn btn-light" (click)="goBack()" >Voltar</button>
-      <button type="submit" class="btn btn-success" (click)="updateTask()" >Atualizar</button>
+
+  <!-- description -->
+  <div class="row">
+    <div class="form-group col-12">
+        <label for="description">Descrição detalhada</label>
+        <textarea class="form-control" id="description" placeholder="Descrição detalhada da atividade" [(ngModel)]="task.description" name="description" id="description" rows="4"></textarea>
     </div>
   </div>
-</div>
+
+  <!-- Buttons -->
+  <button class="btn btn-light" (click)="goBack()" >Voltar</button>
+  <button type="submit" class="btn btn-success" (click)="updateTask()" >Atualizar</button>
+
+  <!-- debug -->
+  <pre>{{ task | json }}</pre>
+</form>
