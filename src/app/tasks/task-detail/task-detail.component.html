@@ -14,7 +14,7 @@
     <!-- title -->
     <div class="form-group col-6">
       <label for="title">Título</label>
-      <input #title="ngModel" type="text" class="form-control" id="title" placeholder="Título" [(ngModel)]="task.title" name="title" id="title" required [class.has-error]="title.invalid && title.touched">
+      <input #title="ngModel" type="text" class="form-control" id="title" placeholder="Título" [(ngModel)]="task.title" name="title" id="title" required [class.has-error]="showFieldError(title)" minlength="3">
     </div>
     <!-- deadline -->
     <div class="col-3">
