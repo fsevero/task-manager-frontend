@@ -22,7 +22,11 @@ import { AppRoutingModule } from "./app-routing.module";
 import { InMemoryWebApiModule } from "angular-in-memory-web-api";
 import { InMemoryTaskDataService } from "./in-memory-task-data.service";
 
+// rxjs extensions and operators
 import "./rxjs-imports"
+
+// jquery plugins
+import * as $ from 'jquery';
 
 @NgModule({
   declarations: [
