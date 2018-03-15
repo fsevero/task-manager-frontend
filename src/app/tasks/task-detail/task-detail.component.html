@@ -6,22 +6,48 @@
 
 <h1>Detalhes da Tarefa: {{ task.title }}</h1>
 
-<!-- Form -->
-<form #taskForm="ngForm" (ngSubmit)="updateTask()" class="was-validated">
-
-  <!-- title, deadline, done -->
+<form [formGroup]="reactiveTaskForm" >
   <div class="row">
-    <!-- title -->
+    <div class="col-6">
+      <label for="title">Título</label>
+      <input type="text" formControlName="title" id="title" class="form-control">
+    </div>
+    <div class="col-3">
+      <label for="deadline">Prazo</label>
+      <input type="text" formControlName="deadline" id="deadline" class="form-control">
+    </div>
+    <div class="col-3">
+      <label for="done">Situação</label>
+      <select formControlName="done" class="form-control" id="done">
+        <option *ngFor="let option of taskDoneOptions" [value]="option.value">{{ option.text }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <label for="description">Descrição</label>
+      <textarea formControlName="description" class="form-control" rows="4"></textarea>
+    </div>
+  </div>
+</form>
+
+
+<!-- Form -->
+<!-- <form #taskForm="ngForm" (ngSubmit)="updateTask()" class="was-validated">
+ title, deadline, done
+  <div class="row">
+     title
     <div class="form-group col-6">
       <label for="title">Título</label>
       <input #title="ngModel" type="text" class="form-control" id="title" placeholder="Título" [(ngModel)]="task.title" name="title" id="title" required [class.has-error]="showFieldError(title)" minlength="3">
     </div>
-    <!-- deadline -->
+     deadline
     <div class="col-3">
       <label for="deadline">Prazo de Entrega</label>
       <input type="text" class="form-control" id="deadline" [(ngModel)]="task.deadline" name="deadline" id="deadline" required>
     </div>
-    <!-- done -->
+     done
     <div class="col-3">
       <label for="done">Situação</label>
       <select class="form-control" id="done" [(ngModel)]="task.done" name="done" id="done" required>
@@ -30,7 +56,7 @@
     </div>
   </div>
 
-  <!-- description -->
+   description
   <div class="row">
     <div class="form-group col-12">
         <label for="description">Descrição detalhada</label>
@@ -38,7 +64,7 @@
     </div>
   </div>
 
-  <!-- Buttons -->
+   Buttons
   <button type="submit" class="btn btn-success" [disabled]="taskForm.invalid" >Atualizar</button>
   <button class="btn btn-light" (click)="goBack()" >Voltar</button>
-</form>
+</form> -->
