@@ -1,8 +1,8 @@
-<!-- <style>
+<style>
   form .has-error {
     background-color: #ffb2c9;
   }
-</style> -->
+</style>
 
 <h1>Detalhes da Tarefa: {{ task.title }}</h1>
 
@@ -10,15 +10,22 @@
   <div class="row">
     <div class="col-6">
       <label for="title">Título</label>
-      <input type="text" formControlName="title" id="title" class="form-control">
+      <input type="text" formControlName="title" id="title" class="form-control" [class.has-error]="showFieldError(reactiveTaskForm.get('title'))">
+
+      <div *ngIf="showFieldError(reactiveTaskForm.get('title'))">
+        <div *ngIf="reactiveTaskForm.get('title').errors.required">O título é obrigatório</div>
+        <div *ngIf="reactiveTaskForm.get('title').errors.minlength">O título deve conter no mínimo 5 caracteres</div>
+        <div *ngIf="reactiveTaskForm.get('title').errors.maxlength">O título deve conter no máximo 255 caracteres</div>
+      </div>
+
     </div>
     <div class="col-3">
       <label for="deadline">Prazo</label>
-      <input type="text" formControlName="deadline" id="deadline" class="form-control">
+      <input type="text" formControlName="deadline" id="deadline" class="form-control" [class.has-error]="showFieldError(reactiveTaskForm.get('deadline'))">
     </div>
     <div class="col-3">
       <label for="done">Situação</label>
-      <select formControlName="done" class="form-control" id="done">
+      <select formControlName="done" class="form-control" id="done" [class.has-error]="showFieldError(reactiveTaskForm.get('done'))">
         <option *ngFor="let option of taskDoneOptions" [value]="option.value">{{ option.text }}</option>
       </select>
     </div>
@@ -27,7 +34,7 @@
   <div class="row">
     <div class="col-12">
       <label for="description">Descrição</label>
-      <textarea formControlName="description" class="form-control" rows="4"></textarea>
+      <textarea formControlName="description" class="form-control" rows="4" [class.has-error]="showFieldError(reactiveTaskForm.get('description'))"></textarea>
     </div>
   </div>
 </form>
