@@ -6,7 +6,7 @@
 
 <h1>Detalhes da Tarefa: {{ task.title }}</h1>
 
-<form [formGroup]="reactiveTaskForm" >
+<form [formGroup]="reactiveTaskForm" (ngSubmit)="updateTask()" >
   <div class="row">
     <div class="col-6">
       <label for="title">Título</label>
@@ -35,6 +35,13 @@
     <div class="col-12">
       <label for="description">Descrição</label>
       <textarea formControlName="description" class="form-control" rows="4" [class.has-error]="showFieldError(reactiveTaskForm.get('description'))"></textarea>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <button type="submit" class="btn btn-success" [disabled]="reactiveTaskForm.invalid" >Atualizar</button>
+      <button type="button" class="btn btn-light" (click)="goBack()" >Voltar</button>
     </div>
   </div>
 </form>
