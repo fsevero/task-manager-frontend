@@ -8,6 +8,7 @@ import { HttpModule } from "@angular/http";
 import { AppComponent } from './app.component';
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { NavbarComponent } from "./navbar/navbar.component";
+import { SignUpFormComponent } from "./sign-up-form/sign-up-form.component";
 import { TaskSearchComponent } from "./navbar/task-search/task-search.component";
 import { TasksComponent } from "./tasks/tasks.component";
 import { TaskDetailComponent } from "./tasks/task-detail/task-detail.component";
@@ -34,6 +35,7 @@ import * as datetimepicker from 'eonasdan-bootstrap-datetimepicker';
     AppComponent,
     DashboardComponent,
     NavbarComponent,
+    SignUpFormComponent,
     TaskSearchComponent,
     TasksComponent,
     TaskDetailComponent
