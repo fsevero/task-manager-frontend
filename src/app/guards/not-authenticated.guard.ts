@@ -9,7 +9,7 @@ export class NotAuthenticatedGuard implements CanActivate {
   public constructor (private authService: AuthService, private router: Router) {}
 
   public canActivate() {
-    if ( !this.authService.userSignedIn ) {
+    if ( !this.authService.userSignedIn() ) {
       return true;
     }
 

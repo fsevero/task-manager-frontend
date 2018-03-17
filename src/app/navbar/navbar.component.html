@@ -15,10 +15,16 @@
       <li class="nav-item">
         <a class="nav-link" routerLinkActive="active" routerLink="/tasks">Tarefas</a>
       </li>
+      <li>
+        <!-- Search Form -->
+        <task-search></task-search>
+      </li>
     </ul>
-    <!-- Search Form -->
     <div class="my-2 my-lg-0">
-      <task-search></task-search>
+      <button class="btn btn-danger" (click)="signOutUser()" >
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+        Sair
+      </button>
     </div>
   </div>
 </nav>

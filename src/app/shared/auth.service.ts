@@ -20,11 +20,12 @@ export class AuthService {
     // can a2token and return Observable<Response>
   }
 
-  public signOut() {
-    // can a2token and return Observable<Response>
+  public signOut(): Observable<Response> {
+    return this.tokenService.signOut()
+      .catch(this.handleErrors);
   }
 
-  public userSignedIn() {
+  public userSignedIn(): boolean {
     return this.tokenService.userSignedIn();
   }
 
