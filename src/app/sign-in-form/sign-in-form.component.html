@@ -2,6 +2,13 @@
     <h1 class="display-4">Faça o seu login</h1>
     <hr class="my-4">
 
+    <div class="alert alert-danger" role="alert" *ngIf="formErrors">
+      <strong>Ocorreu um erro ao tentar criar a sua conta no sistema.</strong>
+      <ul>
+        <li *ngFor="let error of formErrors">{{ error }}</li>
+      </ul>
+    </div>
+
     <form [formGroup]="form" (ngSubmit)="signInUser()" >
       <!-- Email -->
       <div class="form-group row">
@@ -29,7 +36,7 @@
       <!-- Buttons -->
       <div class="form-group row">
         <div class="offset-sm-2 col-sm-10">
-          <button type="submit" class="btn btn-primary" [disabled]="form.invalid" >Fazer Login</button>
+          <button type="submit" class="btn btn-primary" [disabled]="form.invalid || submitted" >Fazer Login</button>
         </div>
       </div>
     </form>
