@@ -5,8 +5,8 @@ export class FormUtils {
 
   public fieldClass(fieldName: string) {
     return {
-      'has-error': this.showFieldError(fieldName),
-      'has-success': this.getField(fieldName).valid,
+      'is-invalid': this.showFieldError(fieldName),
+      'is-valid': this.getField(fieldName).valid,
     }
   }
 

@@ -10,10 +10,6 @@ import { TaskService } from "../shared/task.service";
 @Component({
   selector: 'task-detail',
   templateUrl: './task-detail.component.html',
-  styles: [
-    'form .has-error { background-color: #ffb2c9; }',
-    'form .has-success { background-color: #beffaf; }'
-  ]
 })
 
 export class TaskDetailComponent implements OnInit, AfterViewInit {

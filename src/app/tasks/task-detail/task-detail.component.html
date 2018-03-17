@@ -7,7 +7,7 @@
       <label for="title">Título</label>
       <input type="text" formControlName="title" id="title" class="form-control" [ngClass]="formUtils.fieldClass('title')">
 
-      <div *ngIf="formUtils.showFieldError('title')">
+      <div class="invalid-feedback" *ngIf="formUtils.showFieldError('title')">
         <div *ngIf="form.get('title').errors.required">O título é obrigatório</div>
         <div *ngIf="form.get('title').errors.minlength">O título deve conter no mínimo 5 caracteres</div>
         <div *ngIf="form.get('title').errors.maxlength">O título deve conter no máximo 255 caracteres</div>
