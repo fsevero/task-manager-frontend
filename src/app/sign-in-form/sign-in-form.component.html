@@ -1,0 +1,36 @@
+<div class="jumbotron">
+    <h1 class="display-4">Faça o seu login</h1>
+    <hr class="my-4">
+
+    <form [formGroup]="form" (ngSubmit)="signInUser()" >
+      <!-- Email -->
+      <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="formUtils.fieldClass('email')">
+
+          <div class="invalid-feedback" *ngIf="formUtils.showFieldError('email')">
+            <div *ngIf="form.get('email').errors.required">O Email é obrigatório</div>
+            <div *ngIf="form.get('email').errors.email">O Email informado é inválido</div>
+          </div>
+        </div>
+      </div>
+      <!-- Password -->
+      <div class="form-group row">
+        <label for="password" class="col-sm-2 col-form-label">Senha</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="password" formControlName="password" [ngClass]="formUtils.fieldClass('password')">
+
+          <div class="invalid-feedback" *ngIf="formUtils.showFieldError('password')">
+            <div *ngIf="form.get('password').errors.required">A Senha é obrigatória</div>
+          </div>
+        </div>
+      </div>
+      <!-- Buttons -->
+      <div class="form-group row">
+        <div class="offset-sm-2 col-sm-10">
+          <button type="submit" class="btn btn-primary" [disabled]="form.invalid" >Fazer Login</button>
+        </div>
+      </div>
+    </form>
+  </div>
