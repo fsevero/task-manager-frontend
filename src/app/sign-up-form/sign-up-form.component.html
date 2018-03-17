@@ -47,6 +47,7 @@
 
         <div class="invalid-feedback" *ngIf="formUtils.showFieldError('passwordConfirmation')">
           <div *ngIf="form.get('passwordConfirmation').errors.required">A confirmação é obrigatória</div>
+          <div *ngIf="form.get('passwordConfirmation').errors.mismatch">A confirmação de senha não confere</div>
         </div>
       </div>
     </div>
