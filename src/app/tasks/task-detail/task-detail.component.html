@@ -1,29 +1,29 @@
 <h1>Detalhes da Tarefa: {{ task.title }}</h1>
 
-<form [formGroup]="reactiveTaskForm" (ngSubmit)="updateTask()" >
+<form [formGroup]="form" (ngSubmit)="updateTask()" >
   <div class="row">
     <!-- TITLE -->
     <div class="col-6">
       <label for="title">Título</label>
-      <input type="text" formControlName="title" id="title" class="form-control" [ngClass]="fieldClass('title')">
+      <input type="text" formControlName="title" id="title" class="form-control" [ngClass]="formUtils.fieldClass('title')">
 
-      <div *ngIf="showFieldError('title')">
-        <div *ngIf="getField('title').errors.required">O título é obrigatório</div>
-        <div *ngIf="getField('title').errors.minlength">O título deve conter no mínimo 5 caracteres</div>
-        <div *ngIf="getField('title').errors.maxlength">O título deve conter no máximo 255 caracteres</div>
+      <div *ngIf="formUtils.showFieldError('title')">
+        <div *ngIf="form.get('title').errors.required">O título é obrigatório</div>
+        <div *ngIf="form.get('title').errors.minlength">O título deve conter no mínimo 5 caracteres</div>
+        <div *ngIf="form.get('title').errors.maxlength">O título deve conter no máximo 255 caracteres</div>
       </div>
     </div>
 
     <!-- DEADLINE -->
     <div class="col-3">
       <label for="deadline">Prazo</label>
-      <input type="text" formControlName="deadline" id="deadline" class="form-control"  [ngClass]="fieldClass('deadline')">
+      <input type="text" formControlName="deadline" id="deadline" class="form-control"  [ngClass]="formUtils.fieldClass('deadline')">
     </div>
 
     <!-- DONE / SITUATION -->
     <div class="col-3">
       <label for="done">Situação</label>
-      <select formControlName="done" class="form-control" id="done" [ngClass]="fieldClass('done')">
+      <select formControlName="done" class="form-control" id="done" [ngClass]="formUtils.fieldClass('done')">
         <option *ngFor="let option of taskDoneOptions" [value]="option.value">{{ option.text }}</option>
       </select>
     </div>
@@ -33,14 +33,14 @@
   <div class="row">
     <div class="col-12">
       <label for="description">Descrição</label>
-      <textarea formControlName="description" class="form-control" rows="4" [ngClass]="fieldClass('description')"></textarea>
+      <textarea formControlName="description" class="form-control" rows="4" [ngClass]="formUtils.fieldClass('description')"></textarea>
     </div>
   </div>
 
   <!-- FORM BUTTONS -->
   <div class="row">
     <div class="col-12">
-      <button type="submit" class="btn btn-success" [disabled]="reactiveTaskForm.invalid" >Atualizar</button>
+      <button type="submit" class="btn btn-success" [disabled]="form.invalid" >Atualizar</button>
       <button type="button" class="btn btn-light" (click)="goBack()" >Voltar</button>
     </div>
   </div>

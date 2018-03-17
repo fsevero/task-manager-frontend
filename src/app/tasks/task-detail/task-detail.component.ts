@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from "@angular/router";
 import { Location } from "@angular/common";
 import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 
+import { FormUtils } from "../../shared/form.utils";
 import { Task } from "../shared/task.model";
 import { TaskService } from "../shared/task.service";
 
@@ -16,9 +17,10 @@ import { TaskService } from "../shared/task.service";
 })
 
 export class TaskDetailComponent implements OnInit, AfterViewInit {
-  public reactiveTaskForm: FormGroup;
+  public form: FormGroup;
   public task: Task;
   public taskDoneOptions: Array<any>;
+  public formUtils: FormUtils;
 
 
   public constructor(
@@ -32,12 +34,14 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
       { value: true, text: "Feita" },
     ];
 
-    this.reactiveTaskForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       title: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(255)]],
       deadline: [null, Validators.required],
       done: [null, Validators.required],
       description: [null],
     });
+
+    this.formUtils = new FormUtils(this.form);
   }
 
 
@@ -55,7 +59,7 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
 
   public setTask(task: Task) {
     this.task = task;
-    this.reactiveTaskForm.patchValue(task);
+    this.form.patchValue(task);
   }
 
 
@@ -63,7 +67,7 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
     $("#deadline").datetimepicker({
       'sideBySide': true,
       'locale': 'pt-br'
-    }).on('dp.change', () => this.getField('deadline').setValue( $("#deadline").val() ) );
+    }).on('dp.change', () => this.formUtils.getField('deadline').setValue( $("#deadline").val() ) );
   }
 
 
@@ -73,35 +77,15 @@ export class TaskDetailComponent implements OnInit, AfterViewInit {
 
 
   public updateTask() {
-    this.task.title = this.getField('title').value;
-    this.task.deadline = this.getField('deadline').value;
-    this.task.done = this.getField('done').value;
-    this.task.description = this.getField('description').value;
+    this.task.title = this.formUtils.getField('title').value;
+    this.task.deadline = this.formUtils.getField('deadline').value;
+    this.task.done = this.formUtils.getField('done').value;
+    this.task.description = this.formUtils.getField('description').value;
 
     this.taskService.update(this.task)
       .subscribe(
         () => alert('Tarefa atualizada com sucesso!'),
         () => alert('Ocorreu um erro no servidor, tente mais tarde.')
       );
-  }
-
-
-  // form errors methods
-  public fieldClass(fieldName: string) {
-    return {
-      'has-error': this.showFieldError(fieldName),
-      'has-success': this.getField(fieldName).valid,
-    }
-  }
-
-
-  public showFieldError(fieldName: string): boolean {
-    let field = this.getField(fieldName);
-    return field.invalid && (field.dirty || field.touched);
-  }
-
-
-  public getField(fieldName: string) {
-    return this.reactiveTaskForm.get(fieldName);
   }
 }
