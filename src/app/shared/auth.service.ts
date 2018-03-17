@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   public userSignedIn() {
-    // can a2token and return boolean
+    return this.tokenService.userSignedIn();
   }
 
   private handleErrors(error: Response) {
