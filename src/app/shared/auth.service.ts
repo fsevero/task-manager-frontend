@@ -23,7 +23,7 @@ export class AuthService {
     // can a2token and return Observable<Response>
   }
 
-  public isSignedIn() {
+  public userSignedIn() {
     // can a2token and return boolean
   }
 
